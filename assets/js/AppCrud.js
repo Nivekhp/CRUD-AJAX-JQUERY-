@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	// Activate tooltip
+    $("#gridUser").DataTable();
+    // Activate tooltip
 	$('[data-toggle="tooltip"]').tooltip();
 	// Select/Deselect checkboxes
 	var checkbox = $('table tbody input[type="checkbox"]');
@@ -19,12 +20,15 @@ $(document).ready(function(){
 			$("#selectAll").prop("checked", false);
         }
     });
-    
+
+   //Inserção do usuario 
     $("#botao").click(function(){
-        var form = $("#formulario").serialize();
+        var form = $("#formulario").serialize()+"&botao=true";
         var url = "Controller/UsuarioController.php";
+        console.log(form);
         $.post(url, form,function (json, textStatus, jqXHR) {
                 if(jqXHR.status == 200){
+                    toastr.options.fadeOut = 10;
                     toastr.success(json.msg);
                 }else{
                     toastr.error(json.msg);
@@ -32,19 +36,22 @@ $(document).ready(function(){
             },
             "json"
         );
-        return false;
        });
 
-       $("#teste2").click(function(){
-         var id = $(this).val();
-            //var id = $(".delete").val();
-            console.log(id);
+    //Delete Usuario   
+    $(".delete").click(function(){
+         var id = $(this).attr("id");
+         var url = "Controller/UsuarioController.php/"+id;
+         $.ajax({
+             type: "post",
+             url: url,
+             data: {'delete':'true',"id":id},
+             dataType:"JSON",
+             success: function (json) {
+               toastr.success(json.msg);
+             }
+         });
            return false;
        });
-      
-  
-
-  
-          
-  
+    
 });
