@@ -6,7 +6,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-						<h2>CRUD <b> </b></h2>
+						<h2>Usuarios <b> </b></h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Novo Registro</span></a>
@@ -31,9 +31,11 @@
                     </tr>
                 </thead>
                 <tbody>
+
                 <?php
                     include_once 'View/tableUsuario.php';
           	   ?>
+
                 </tbody>
             </table>
 	
@@ -65,48 +67,54 @@
 						</div>					
 					</div>
 					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-success" data-dismiss="modal" value="Add" id="botao">
+
+			
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+						<input type="submit" class="btn btn-success" data-dismiss="modal" value="Adicionar Usuario" id="botao">
+
+
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	<!-- Edit Modal HTML -->
+
 	<div id="editEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form id="editarUsuario">
 					<div class="modal-header">						
-						<h4 class="modal-title">Edit Employee</h4>
+						<h4 class="modal-title">Editar Registro</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
 						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
+							<label>Nome</label>
+							<input id="editNome" type="text" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>Email</label>
-							<input type="email" class="form-control" required>
+							<input id="editEmail" type="email" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
+							<label>Endereço</label>
+							<textarea id="editEndereco" class="form-control" required></textarea>
 						</div>
 						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
+							<label>Telefone</label>
+							<input id="editTelefone" type="text" class="form-control" required>
 						</div>					
 					</div>
 					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Voltar">
+						<input type="submit" class="btn btn-info editarUsuario" value="Salvar">
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+
 	<!-- Delete Modal HTML -->
 	<div id="deleteEmployeeModal" class="modal fade">
 		<div class="modal-dialog">

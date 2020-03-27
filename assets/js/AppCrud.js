@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     $("#gridUser").DataTable();
     // Activate tooltip
 	$('[data-toggle="tooltip"]').tooltip();
@@ -21,6 +22,8 @@ $(document).ready(function(){
         }
     });
 
+  //===========================================================================================================================================
+
    //Inserção do usuario 
     $("#botao").click(function(){
         var form = $("#formulario").serialize()+"&botao=true";
@@ -38,10 +41,11 @@ $(document).ready(function(){
         );
        });
 
-    //Delete Usuario   
+    //DELETAR USUARIO   
     $(".delete").click(function(){
          var id = $(this).attr("id");
          var url = "Controller/UsuarioController.php/"+id;
+         if(confirm("Deseja realmente deletar o registro?")){
          $.ajax({
              type: "post",
              url: url,
@@ -52,6 +56,47 @@ $(document).ready(function(){
              }
          });
            return false;
+        }
        });
-    
+
+       //PEGA DADOS FORM EDIT 
+    $(".edit").click(function(){
+        var id = $(this).attr("id");
+        var url = "Controller/UsuarioController.php/"+id;
+        $.ajax({
+            type:"get",
+            url:url,
+            data:{'getdadosUser':'true','id':id},
+            dataType:"JSON",
+            success:function(data){
+             
+                $(".editarUsuario").attr("id",data.id);
+                $("#editNome").val(data.nome);
+                $("#editEmail").val(data.email);
+                $("#editEndereco").val(data.endereco);
+                $("#editTelefone").val(data.telefone);
+
+            }
+        })
+    })
+
+    $(".editarUsuario").click(function () {
+        var id = $(this).attr("id");
+        var url = "Controller/UsuarioController.php/"+id;
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {"editUser":"true","id":id},
+            dataType: "JSON",
+            success: function (json) {
+            
+            }
+        });
+
+
+
+        return false;
+    });
+
+
 });

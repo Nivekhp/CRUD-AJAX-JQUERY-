@@ -3,7 +3,7 @@
 class databaseConfig{
 
 public function conectDatabase(){
-
+   
      $host = "localhost";
      $username = "root";
      $password = "";
