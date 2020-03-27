@@ -1,6 +1,6 @@
 <?php
 include 'database_config.php';
-
+//caceta
 class Usuario extends databaseConfig{
 
 public function insert($nome,$email,$endereco,$telefone){
